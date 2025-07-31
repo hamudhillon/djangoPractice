@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse
 # Create your views here.
 
 
+
 def home(requests):
     data = {
         'users': [
@@ -39,3 +40,41 @@ def add(request,num1,num2,name):
     result=num1+num2
 
     return HttpResponse(f"{result} - {name}")
+
+def data(request):
+    data=[
+        {'name':'rahul',
+        'bio':'a python developer also having knowledge about frontend  '
+        },
+        {'name':'sham',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        },
+        {'name':'rohit',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        } 
+        
+    ]
+    return render(request,'index.html',context={'data':data})
+
+def bio(request,name):
+    data=[
+        {'name':'rahul',
+        'bio':'a python developer also having knowledge about frontend  '
+        },
+        {'name':'sham',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        } ,
+        {'name':'rohit',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        }   
+    ]
+    res=''
+    for user in data:
+        if user['name'] == name:
+            res=user
+            break
+        else:
+            res={'name':'unknown',
+                'bio':''
+                }
+    return render(request,'bio.html',{'bio':res})
