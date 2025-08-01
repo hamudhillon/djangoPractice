@@ -1,39 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Enter your description here" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Title</title>
-</head>
 
-<body>
     {% for user in users %}
-     <h1>Hello, {{ user.name}}</h1>
-     <h1>Hello, {{ user.phone}}</h1>
+    <h1>Hello, {{ user.name}}</h1>
+    <h1>Hello, {{ user.phone}}</h1>
     {% endfor %}
     <h1>Hello, {{ users.1.name}}</h1>
     <h1>Hello, {{ users.0.phone}}</h1>
     <h1>Hello, {{ status}}</h1>
     <h1>Hello, {{ skills}}</h1>
     {% for i in skills %}
-        <h2> {{i}}</h2>
+    <h2>{{i}}</h2>
     {% endfor %}
 
-<a href="/sum/2/4/tanu">ram </a><br>
-<a href="/sum/2/4/tanu">sham </a><br>
-<a href="/sum/2/4/tanu">rahul </a><br>
+    <a href="/sum/2/4/tanu">ram </a><br />
+    <a href="/sum/2/4/tanu">sham </a><br />
+    <a href="/sum/2/4/tanu">rahul </a><br />
 
     <a href="/sum/2/4/tanu">Add the Numbers </a>
-    <a href="{% url 'add' num1=3 num2=4 name=users.1.name %}">Add the Numbers </a>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-</body>
+    <a href="{% url 'add' num1=3 num2=4 name=users.1.name %}"
+      >Add the Numbers
+    </a>
 
-</html>
+
+{% endblock content %}
