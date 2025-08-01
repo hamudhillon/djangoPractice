@@ -8,5 +8,7 @@ urlpatterns = [
 
 
     path('data/',data,name='data'),
-    path('user/<str:name>',bio,name='bio')
+    path('user/<str:name>',bio,name='bio'),
+
+    path('createUsers/',createUsers,name='createUser')
 ]

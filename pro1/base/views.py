@@ -51,15 +51,14 @@ def data(request):
         },
         {'name':'rohit',
         'bio':'a fullstack developer doing present job in isekai.tech'
-        } 
-        
+        }   
     ]
     return render(request,'index.html',context={'data':data})
 
 def bio(request,name):
     data=[
         {'name':'rahul',
-        'bio':'a python developer also having knowledge about frontend  '
+        'bio':'a python developer also having knowledge about frontend'
         },
         {'name':'sham',
         'bio':'a fullstack developer doing present job in isekai.tech'
@@ -78,3 +77,22 @@ def bio(request,name):
                 'bio':''
                 }
     return render(request,'bio.html',{'bio':res})
+
+
+def createUsers(request):
+    data=[
+        {'name':'rahul',
+        'bio':'a python developer also having knowledge about frontend'
+        },
+        {'name':'sham',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        } ,
+        {'name':'rohit',
+        'bio':'a fullstack developer doing present job in isekai.tech'
+        }   
+    ]
+    if request.method=='POST':
+        name=request.POST['Name']
+        bio=request.POST['bio']
+        data.append({'name':name,'bio':bio})
+    return render(request,'createUsers.html',{'data':data})
