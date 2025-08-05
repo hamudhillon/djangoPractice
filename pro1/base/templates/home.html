@@ -2,13 +2,24 @@
 {% load static %}
 {% block content %}
 
-  <img src='{% static "img.jpg" %}' width='200'> 
+   
+    <img src='{% static "media/img.jpg" %}' width='200'> 
 
+
+It is {% now "jS F Y H:i" %}
+    {{users | length}}
     {% for user in users %}
-    <h1>Hello, {{ user.name}}</h1>
+    {% if user.name == 'Ram' %}
+        <h2> USER IS RAM </h2>
+    {% else %}
+        <h2> USER IS NOT RAM </h2>
+
+    {% endif %}
+
+    <h1 style='color: {% if user.name == "Ram" %} red {% else %} green {% endif %}'>Hello, {{ user.name}}</h1>
     <h1>Hello, {{ user.phone}}</h1>
     {% endfor %}
-    <h1>Hello, {{ users.1.name}}</h1>
+    <h1>Hello, {{ users.1.name | upper}}</h1>
     <h1>Hello, {{ users.0.phone}}</h1>
     <h1>Hello, {{ status}}</h1>
     <h1>Hello, {{ skills}}</h1>
