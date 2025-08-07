@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from .models import emp
 # Create your views here.
 
@@ -102,3 +102,9 @@ def empViews(request):
     data= emp.objects.all()
     print(data)
     return render(request,'empData.html',context={'data':data})
+
+def empDelete(request,id):
+    empuser=emp.objects.get(id=id)
+    print(empuser.name)
+    empuser.delete()
+    return redirect('empData')

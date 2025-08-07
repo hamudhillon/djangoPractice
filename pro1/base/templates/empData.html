@@ -20,7 +20,7 @@
         <td>{{emp.department}}</td>
         <td>
             <a href="">Edit</a>
-            <a href="">delete</a>
+            <a href="{% url "empDelete" id=emp.id %}">delete</a>
         </td>
     </tr>
     
