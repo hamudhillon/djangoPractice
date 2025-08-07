@@ -108,3 +108,20 @@ def empDelete(request,id):
     print(empuser.name)
     empuser.delete()
     return redirect('empData')
+
+def empUpdate(request,id):
+    empUser=emp.objects.get(id=id)
+    if request.method=='POST':
+        name=request.POST['name']
+        phone=request.POST['phone']
+        department=request.POST['department']
+        address=request.POST['address']
+
+        # to update values
+        empUser.name=name
+        empUser.phone=phone
+        empUser.department=department
+        empUser.address=address
+        empUser.save()
+        return redirect('empData')
+    return render(request,'empEdit.html',context={'data':empUser})

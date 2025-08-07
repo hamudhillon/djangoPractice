@@ -13,6 +13,7 @@ urlpatterns = [
     path('createUsers/',createUsers,name='createUser'),
 
     path('empData',empViews,name='empData'),
-    path('empDelete/<int:id>',empDelete,name='empDelete')
+    path('empDelete/<int:id>',empDelete,name='empDelete'),
+    path('empUpdate/<int:id>',empUpdate,name='empUpdate'),
     
 ]
