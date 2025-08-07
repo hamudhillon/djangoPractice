@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>name</td>
+        <td>Phone</td>
+        <td>Address</td>
+        <td>Department</td>
+        <td>Actions</td>
+    </tr>
+    {% for emp in data %}
+    <tr>
+        <td>{{emp.id}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.phone}}</td>
+        <td>{{emp.address}}</td>
+        <td>{{emp.department}}</td>
+        <td>
+            <a href="">Edit</a>
+            <a href="">delete</a>
+        </td>
+    </tr>
+    
+    {% endfor %}
+
+</table>
+
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-
+from .models import emp
 # Create your views here.
 
 
@@ -96,3 +96,9 @@ def createUsers(request):
         bio=request.POST['bio']
         data.append({'name':name,'bio':bio})
     return render(request,'createUsers.html',{'data':data})
+
+
+def empViews(request):
+    data= emp.objects.all()
+    print(data)
+    return render(request,'empData.html',context={'data':data})
