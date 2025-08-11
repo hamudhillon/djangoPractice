@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse,redirect
-from .models import emp
+from .models import *
 # Create your views here.
 
 
@@ -125,3 +125,28 @@ def empUpdate(request,id):
         empUser.save()
         return redirect('empData')
     return render(request,'empEdit.html',context={'data':empUser})
+
+def empCreate(request):
+    departments=department.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        phone=request.POST['phone']
+        departmentValue=request.POST['department']
+        address=request.POST['address']
+
+        deptOB=department.objects.get(name=departmentValue)
+        emp.objects.create(
+            name=name,
+            department=deptOB,
+            address=address,
+            phone=phone
+        )
+        return redirect('empData')
+        # empOB=emp()
+        # empOB.name=name
+        # empOB.phone=phone
+        # empOB.department=department
+        # empOB.address=address
+        # empOB.save()
+
+    return render(request,'empCreate.html',context={'departments':departments})
