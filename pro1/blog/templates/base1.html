@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.0/dist/index.css" />
+    
+
+    {% block PageCss %}{% endblock PageCss %}
+
+    <title>Title</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
+      <div class="container-xl">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://preview.webpixels.io/web/img/logos/clever-light.svg"
+            class="h-8"
+            alt="..."
+          />
+        </a>
+        <!-- Navbar toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- Nav -->
+          <div class="navbar-nav mx-lg-auto">
+            <a class="nav-item nav-link active" href="{% url "blogAll" %}" aria-current="page"
+              >Blog All</a
+            >
+            <a class="nav-item nav-link" href="{% url "addPost" %}">Add Blog</a>
+           
+          </div>
+          <!-- Right navigation -->
+          <div class="navbar-nav ms-lg-4">
+            <a class="nav-item nav-link" href="#">Sign in</a>
+          </div>
+          <!-- Action -->
+          <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+            <a href="#" class="btn btn-sm btn-primary w-full w-lg-auto">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    
+      
+    </div>
+    {% block content %}{% endblock content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
