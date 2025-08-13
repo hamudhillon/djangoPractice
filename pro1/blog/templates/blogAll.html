@@ -120,14 +120,22 @@
   <div class="card">
     <div class="card-banner">
       <p class="category-tag popular">{{blog.category.name}}</p>
+
       <img
         class="banner-img"
-        src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xna5h3bfbgmyrb6py1o7.jpg"
+        src="
+        {% if blog.image %}
+        {{blog.image.url}}
+        {% else %}
+        https://images.pexels.com/photos/33410908/pexels-photo-33410908.jpeg
+        {% endif %}
+        "
         alt=""
       />
     </div>
     <div class="card-body">
-      <p class="blog-hashtag">{% for tag in blog.tag %}{{tag}}{% endfor %}</p>
+        
+      <p class="blog-hashtag">{% for t in blog.tags.all %}#{{t}} {% endfor %}</p>
       <h2 class="blog-title">{{blog.title}}</h2>
       <p class="blog-description">
         {{blog.desc | truncatewords:20}}
