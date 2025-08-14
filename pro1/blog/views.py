@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
@@ -49,3 +50,22 @@ def addPost(request):
             
         
     return render(request,'addBlog.html',context)
+
+
+def signup(request):
+    if request.method=='POST':
+        if request.POST['btn']=='Register':
+            username=request.POST['Username']
+            email=request.POST['Email']
+            password=request.POST['Password']
+            name=request.POST['Name']
+            userOB=User.objects.create_user(
+                username=username,
+                password=password,
+                email=email,
+                first_name=name
+            )
+            author.objects.create(
+                user=userOB
+            )
+    return render(request,'signup.html')

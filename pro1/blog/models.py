@@ -1,6 +1,6 @@
 from venv import create
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class tag(models.Model):
     name=models.CharField(max_length=100)
@@ -24,3 +24,14 @@ class blog(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
+    
+
+class author(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    phone=models.CharField(max_length=100,blank=True)
+    profilePic=models.ImageField(upload_to='users',blank=True)
+    bio=models.TextField(blank=True)
+    Fb_link=models.CharField(max_length=500,blank=True)
+    ig_link=models.CharField(max_length=500,blank=True)
+    X_link=models.CharField(max_length=500,blank=True)
+    yt_link=models.CharField(max_length=500,blank=True)
