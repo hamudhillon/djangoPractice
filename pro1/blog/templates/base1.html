@@ -55,8 +55,18 @@
            
           </div>
           <!-- Right navigation -->
+           {% if request.user.is_authenticated %}
+           
+ <div class="navbar-nav ms-lg-4">
+            <a class="nav-item nav-link" href="#">{{request.user}}</a>
+          </div>
           <div class="navbar-nav ms-lg-4">
-            <a class="nav-item nav-link" href="#">Sign in</a>
+            <a class="btn btn-sm btn-danger w-full w-lg-auto" href="{% url "logout" %}">logout</a>
+          </div>
+           {% else %}
+
+           <div class="navbar-nav ms-lg-4">
+            <a class="nav-item nav-link" href="{% url "signup" %}">Sign in</a>
           </div>
           <!-- Action -->
           <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
@@ -64,6 +74,9 @@
               Register
             </a>
           </div>
+           
+           {% endif %}
+          
         </div>
       </div>
     </nav>

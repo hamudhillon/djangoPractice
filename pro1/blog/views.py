@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth.models import User
 from datetime import datetime
-
+from django.contrib.auth import login ,authenticate,logout
 
 # Create your views here.
 def blogAll(request):
@@ -68,4 +68,16 @@ def signup(request):
             author.objects.create(
                 user=userOB
             )
+        if request.POST['btn']=='Login':
+            username=request.POST['Username']
+            password=request.POST['Password']
+            userMatch=authenticate(request=request,username= username,password=password)
+            if(userMatch):
+                login(request=request,user=userMatch)
+                return redirect('blogAll')
+
     return render(request,'signup.html')
+
+def userlogout(request):
+    logout(request)
+    return redirect('blogAll')

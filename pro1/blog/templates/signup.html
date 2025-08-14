@@ -251,21 +251,22 @@ form{ width: 100%; }
   <div class='MainWrapper'>
 <div class="container">
         <div class="form-box login">
-            <form action="#">
+            <form action="?" method='POST'>
+                {% csrf_token %}
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" name="Username"  placeholder="Username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" name="Password" placeholder="Password" required>
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
                 <div class="forgot-link">
                     <a href="#">Forgot Password?</a>
                 </div>
                
-                <input type="button" class="btn"  name="btn" value="Login">
+                <input type="submit" class="btn"  name="btn" value="Login">
 
                 <p>or login with social platforms</p>
                 <div class="social-icons">
