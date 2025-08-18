@@ -29,6 +29,8 @@ def addPost(request):
         image=request.FILES['image']
         catOB=category.objects.get(id=cat)
 
+        authorOB=author.objects.get(user=request.user)
+        
         allTags=[]
         if ',' in ftags: 
             for t in ftags.split(','):
@@ -41,7 +43,8 @@ def addPost(request):
         desc=desc,
         category=catOB,
         image=image,
-        created_at=datetime.now()
+        created_at=datetime.now(),
+        author=authorOB
         )
        
         postOB.tags.set(allTags)
