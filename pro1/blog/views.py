@@ -30,7 +30,7 @@ def addPost(request):
         catOB=category.objects.get(id=cat)
 
         authorOB=author.objects.get(user=request.user)
-        
+
         allTags=[]
         if ',' in ftags: 
             for t in ftags.split(','):
@@ -84,3 +84,7 @@ def signup(request):
 def userlogout(request):
     logout(request)
     return redirect('blogAll')
+
+def profileUpdate(request):
+
+    return render(request,'profileUpdate.html')
