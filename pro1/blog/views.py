@@ -9,9 +9,9 @@ def blogAll(request):
     allBlogs=blog.objects.all()
     return render(request,'blogAll.html',context={'blogs':allBlogs})
 
-def blogSingle(request):
-
-    return render(request,'singleBlog.html')
+def blogSingle(request,id,bname):
+    singleBlog=blog.objects.get(id=id)
+    return render(request,'singleBlog.html',{'blog':singleBlog})
 
 def addPost(request):
     print('aaaaasasdasddas')

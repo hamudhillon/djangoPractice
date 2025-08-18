@@ -3,16 +3,16 @@
   <div style="max-width: 700px; top: -80px" class="mx-auto text-secondary">
     <div>
       <small>
-        <a href="#" class="text-primary">Election</a>,
-        <a href="#" class="text-primary">Politics</a>
+        {% comment %} <a href="#" class="text-primary">Election</a>, {% endcomment %}
+        <a href="#" class="text-primary">{{blog.category.name}}</a>
       </small>
     </div>
-    <h1 class="font-weight-bold text-dark">Revenge of the Never Trumpers</h1>
+    <h1 class="font-weight-bold text-dark">{{blog.title}}</h1>
   </div>
 </div>
 <img
   class="w-100 my-3"
-  src="https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&w=1201&h=676&crop=1"
+  src="{{blog.image.url}}"
 />
 
 <div style="max-width: 700px; top: -80px" class="mx-auto text-secondary">
@@ -23,70 +23,22 @@
         style="width: 50px"
       />
       <small class="ml-2">
-        <a href="#" class="text-primary d-block">Ahmad Sultani</a>
-        <span>Aug 18</span>
+        <a href="#" class="text-primary d-block">{{blog.author.user.first_name}}</a>
+        <span>{{blog.created_at}}</span>
       </small>
     </div>
   </div>
     <p class="my-2" style="line-height: 2">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book. It has survived not only five centuries, but
-      also the leap into electronic typesetting, remaining essentially
-      unchanged. It was popularised in the 1960s with the release of Letraset
-      sheets containing Lorem Ipsum passages, and more recently with desktop
-      publishing software like Aldus PageMaker including versions of Lorem
-      Ipsum.
+      {{blog.desc}}
     </p>
-    <br />
-    <br />
-
-    <h3 class="font-weight-bold text-dark">#1. What is Lorem Ipsum?</h3>
-    <p class="my-2" style="line-height: 2">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book. It has survived not only five centuries, but
-      also the leap into electronic typesetting, remaining essentially
-      unchanged. It was popularised in the 1960s with the release of Letraset
-      sheets containing Lorem Ipsum passages, and more recently with desktop
-      publishing software like Aldus PageMaker including versions of Lorem
-      Ipsum.
-    </p>
-
-    <br />
-
-    <blockquote
-      class="text-primary p-3 font-italic"
-      style="border-left: 4px solid black; line-height: 2"
-    >
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s
-    </blockquote>
-
-    <br />
-
-    <p class="my-2" style="line-height: 2">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book. It has survived not only five centuries, but
-      also the leap into electronic typesetting, remaining essentially
-      unchanged. It was popularised in the 1960s with the release of Letraset
-      sheets containing Lorem Ipsum passages, and more recently with desktop
-      publishing software like Aldus PageMaker including versions of Lorem
-      Ipsum.
-    </p>
+   
 
     <div class="my-3">
       <small>
-        <a href="#" class="text-primary">#election</a>,
-        <a href="#" class="text-primary">#politics</a>,
-        <a href="#" class="text-primary">#trump</a>,
-        <a href="#" class="text-primary">#revenge</a>,
-        <a href="#" class="text-primary">#2020</a>
+        {% for tag in blog.tags.all %}
+        <a href="#" class="text-primary">#{{tag.name}}</a>,
+        {% endfor %}
+
       </small>
     </div>
   </div>

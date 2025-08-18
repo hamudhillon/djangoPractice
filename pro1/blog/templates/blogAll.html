@@ -136,7 +136,7 @@
     <div class="card-body">
         
       <p class="blog-hashtag">{% for t in blog.tags.all %}#{{t}} {% endfor %}</p>
-      <a href=""><h2 class="blog-title">{{blog.title}}</h2> </a>
+      <a href="{% url "blogSingle" id=blog.id bname=blog.title|slugify %}"><h2 class="blog-title">{{blog.title}}</h2> </a>
       <p class="blog-description">
         {{blog.desc | truncatewords:20}}
       </p>
