@@ -113,9 +113,18 @@
   }
 </style>
 {% endblock PageCss %} {% block content %}
+  <div >
+    <a href='?' class='btn btn-primary'>All</a>
 
+    {% for cats in allcats %}
+    
+    <a class='btn btn-primary' href='?category={{cats.name}}'>{{cats.name}}</a>
+    {% endfor %}
+  </div>
 <div class="wrapper">
- {% for blog in blogs %}
+
+  <br>
+  {% for blog in blogs %}
  
   <div class="card">
     <div class="card-banner">

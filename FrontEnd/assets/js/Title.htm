@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.0/dist/index.css" />
+    
+
+    
+<style media="screen">
+  * {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    color: #414b56;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    overflow: hidden;
+    box-shadow: 0px 2px 20px #d7dfe2;
+    background: white;
+    border-radius: 0.5rem;
+    position: relative;
+    width: 350px;
+    margin: 1rem;
+    transition: 250ms all ease-in-out;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 2px 40px #d7dfe2;
+  }
+
+  .banner-img {
+    position: absolute;
+    object-fit: cover;
+    height: 14rem;
+    width: 100%;
+  }
+
+  .category-tag {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    background: red;
+    padding: 0.5rem 1.3rem 0.5rem 1rem;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 1;
+    top: 1rem;
+    border-radius: 0 2rem 2rem 0;
+  }
+
+  .popular {
+    background: #ef257a;
+  }
+
+  .technology {
+    background: #651fff;
+  }
+
+  .psychology {
+    background: #e85808;
+  }
+
+  .card-body {
+    margin: 15rem 1rem 1rem 1rem;
+  }
+
+  .blog-hashtag {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4d97b2;
+  }
+
+  .blog-title {
+    line-height: 1.5rem;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .blog-description {
+    color: #616b74;
+    font-size: 0.9rem;
+  }
+
+  .card-profile {
+    display: flex;
+    margin-top: 2rem;
+    align-items: center;
+  }
+
+  .profile-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .card-profile-info {
+    margin-left: 1rem;
+  }
+
+  .profile-name {
+    font-size: 1rem;
+  }
+
+  .profile-followers {
+    color: #616b74;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+    <title>Title</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
+      <div class="container-xl">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://preview.webpixels.io/web/img/logos/clever-light.svg"
+            class="h-8"
+            alt="..."
+          />
+        </a>
+        <!-- Navbar toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- Nav -->
+          <div class="navbar-nav mx-lg-auto">
+            <a class="nav-item nav-link active" href="/blog/all/" aria-current="page"
+              >Blog All</a
+            >
+            <a class="nav-item nav-link" href="/blog/addPost/">Add Blog</a>
+           
+          </div>
+          <!-- Right navigation -->
+           
+           
+             <div class="navbar-nav ms-lg-4">
+
+               <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            admin
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="/blog/profileUpdate/">Profile Settings</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+           
+          </div>
+          <div class="navbar-nav ms-lg-4">
+            <a class="btn btn-sm btn-danger w-full w-lg-auto" href="/blog/logout/">logout</a>
+          </div>
+           
+          
+        </div>
+      </div>
+    </nav>
+
+    
+      
+    </div>
+    
+
+<div class="wrapper">
+  <a href='?category=Food & Travel'>Food & Travel</a>
+
+  
+ 
+  <div class="card">
+    <div class="card-banner">
+      <p class="category-tag popular">Food &amp; Travel</p>
+
+      <img
+        class="banner-img"
+        src="
+        
+        /media/blog/pexels-photo-112164471.jpeg
+        
+        "
+        alt=""
+      />
+    </div>
+    <div class="card-body">
+        
+      <p class="blog-hashtag">#food #travel #street food #culture </p>
+      <a href="/blog/1/10-must-try-street-foods-around-the-world"><h2 class="blog-title">10 Must-Try Street Foods Around the World</h2> </a>
+      <p class="blog-description">
+        Street food is more than just a quick bite; it’s a cultural experience that tells stories about traditions, flavors, and …
+      </p>
+
+      <div class="card-profile">
+        <img
+          class="profile-img"
+          src="/media/users/pexels-busra-yurt-2148943872-317427681.jpg"
+          alt=""
+        />
+        <div class="card-profile-info">
+          <h3 class="profile-name">Admin</h3>
+          <p class="profile-followers">test@test.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+ 
+  <div class="card">
+    <div class="card-banner">
+      <p class="category-tag popular">Technology</p>
+
+      <img
+        class="banner-img"
+        src="
+        
+        /media/blog/pexels-photo-5468191.jpeg
+        
+        "
+        alt=""
+      />
+    </div>
+    <div class="card-body">
+        
+      <p class="blog-hashtag">#javascript #programming #web development #tutorials </p>
+      <a href="/blog/2/beginners-guide-to-javascript-in-2025"><h2 class="blog-title">Beginner’s Guide to JavaScript in 2025</h2> </a>
+      <p class="blog-description">
+        JavaScript has come a long way since its humble beginnings in the 1990s. Today, it’s the backbone of web development, …
+      </p>
+
+      <div class="card-profile">
+        <img
+          class="profile-img"
+          src="/media/users/pexels-busra-yurt-2148943872-317427681.jpg"
+          alt=""
+        />
+        <div class="card-profile-info">
+          <h3 class="profile-name">Admin</h3>
+          <p class="profile-followers">test@test.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+ 
+  <div class="card">
+    <div class="card-banner">
+      <p class="category-tag popular">Lifestyle</p>
+
+      <img
+        class="banner-img"
+        src="
+        
+        /media/blog/pexels-photo-30768991.jpeg
+        
+        "
+        alt=""
+      />
+    </div>
+    <div class="card-body">
+        
+      <p class="blog-hashtag">#plants #home decor #health #eco-friendly </p>
+      <a href="/blog/3/top-7-indoor-plants-that-purify-air"><h2 class="blog-title">Top 7 Indoor Plants That Purify Air</h2> </a>
+      <p class="blog-description">
+        Indoor plants do more than beautify a room; they actively improve air quality, reduce toxins, and create a calming environment. …
+      </p>
+
+      <div class="card-profile">
+        <img
+          class="profile-img"
+          src="/media/users/pexels-renestrgar-20882502.jpg"
+          alt=""
+        />
+        <div class="card-profile-info">
+          <h3 class="profile-name">Sham</h3>
+          <p class="profile-followers">sham@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+
+  
+</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

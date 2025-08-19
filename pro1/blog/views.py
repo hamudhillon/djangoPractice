@@ -6,8 +6,15 @@ from django.contrib.auth import login ,authenticate,logout
 
 # Create your views here.
 def blogAll(request):
-    allBlogs=blog.objects.all()
-    return render(request,'blogAll.html',context={'blogs':allBlogs})
+    allcats=category.objects.all()
+    filters=request.GET
+    categoryfilters=''
+    if filters:
+        categoryfilters=filters['category'].replace('and','&')
+    print(categoryfilters)
+
+    allBlogs=blog.objects.filter(category__name__icontains=categoryfilters)
+    return render(request,'blogAll.html',context={'blogs':allBlogs,'allcats':allcats})
 
 def blogSingle(request,id,bname):
     singleBlog=blog.objects.get(id=id)
