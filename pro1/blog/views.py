@@ -46,7 +46,6 @@ def addPost(request):
         created_at=datetime.now(),
         author=authorOB
         )
-       
         postOB.tags.set(allTags)
         postOB.save()
 
@@ -87,4 +86,31 @@ def userlogout(request):
 
 def profileUpdate(request):
 
-    return render(request,'profileUpdate.html')
+    if request.method=='POST':
+        Fname=request.POST['Fname']
+        Lname=request.POST['Lname']
+        Phone=request.POST['phone']
+        Email=request.POST['Email']
+        FbLink=request.POST['FbLink']
+        iglink=request.POST['iglink']
+        ProfilePic=request.FILES['profilePic']
+        
+        userOB=User.objects.get(id=request.user.id)
+        userOB.first_name=Fname
+        userOB.last_name=Lname
+        userOB.email=Email
+
+        userOB.save()
+
+
+        authorOb=author.objects.get(user=request.user)
+        authorOb.phone=Phone
+        authorOb.Fb_link=FbLink
+        authorOb.ig_link=iglink
+        authorOb.profilePic=ProfilePic
+
+        authorOb.save()    
+
+    myauthor=author.objects.get(user=request.user)
+
+    return render(request,'profileUpdate.html',{'myauthor':myauthor})

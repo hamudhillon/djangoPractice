@@ -16,6 +16,7 @@ class category(models.Model):
 
 
 
+
 class author(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     phone=models.CharField(max_length=100,blank=True)

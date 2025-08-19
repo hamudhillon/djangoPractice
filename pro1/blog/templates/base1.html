@@ -57,8 +57,19 @@
           <!-- Right navigation -->
            {% if request.user.is_authenticated %}
            
- <div class="navbar-nav ms-lg-4">
-            <a class="nav-item nav-link" href="#">{{request.user}}</a>
+             <div class="navbar-nav ms-lg-4">
+
+               <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.user}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="{% url "profileUpdate" %}">Profile Settings</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+           
           </div>
           <div class="navbar-nav ms-lg-4">
             <a class="btn btn-sm btn-danger w-full w-lg-auto" href="{% url "logout" %}">logout</a>

@@ -1,101 +1,147 @@
-{% extends "base1.html" %}
-{% block PageCss %}
+{% extends "base1.html" %} {% block PageCss %}
 
 <style>
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
-
-
-.jumbotron-flat {
-  background-color: solid #4DB8FFF;
-  height: 100%;
-  border: 1px solid #4DB8FF;
-  background: white;
-  width: 100%;
-text-align: center;
-overflow: auto;
-  color: var(--dark-color);
-}
-
-.paymentAmt {
-  color: var(--dark-color);
-    font-size: 80px; 
-}
-
-.centered {
+  .jumbotron-flat {
+    background-color: solid #4DB8FFF;
+    height: 100%;
+    border: 1px solid #4db8ff;
+    background: white;
+    width: 100%;
     text-align: center;
-}
+    overflow: auto;
+    color: var(--dark-color);
+  }
 
-.title {
- padding-top: 15px;   
-  color: var(--dark-color);
-}
+  .paymentAmt {
+    color: var(--dark-color);
+    font-size: 80px;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .title {
+    padding-top: 15px;
+    color: var(--dark-color);
+  }
 </style>
-{% endblock PageCss %}
-
-{% block content %}
+{% endblock PageCss %} {% block content %}
 
 <div class="container">
-    <h1>Edit Profile</h1>
-  	<hr>
-	<div class="row">
-      <!-- left column -->
-      <div class="col-md-3">
-        <div class="text-center">
-          <img src="https://png.pngitem.com/pimgs/s/150-1503945_transparent-user-png-default-user-image-png-png.png" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
-        </div>
+  <h1>Edit Profile</h1>
+  <hr />
+  <div class="row">
+    <!-- left column -->
+
+    <!-- edit form column -->
+    <div class="col-md-9 mx-auto personal-info">
+      {% comment %}
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a>
+        <i class="fa fa-coffee"></i>
+        This is an <strong>.alert</strong>. Use this to show important messages
+        to the user.
       </div>
-      
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      {% endcomment %}
+      <h3>Personal info</h3>
+
+      <form
+        class="form-horizontal"
+        role="form"
+        action="?"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="col-md-12">
+          <div class="text-center mb-3">
+            <img
+              src="{% if myauthor.profilePic %} {{myauthor.profilePic.url}} {% endif %}"
+              class="avatar img-circle"
+              alt="avatar"
+            />
+            <h6>Upload a different photo...</h6>
+
+            <input type="file" class="form-control" name="profilePic" value="{% if myauthor.profilePic %} {{myauthor.profilePic.url}} {% endif %}" />
+          </div>
         </div>
-        <h3>Personal info</h3>
-        
-        <form class="form-horizontal" role="form">
-<div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" value="janeuser">
-            </div>
+        <div class="form-group mb-4 row">
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="Fname"
+              placeholder="First name"
+              value="{{myauthor.user.first_name}}"
+            />
           </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="janesemail@gmail.com">
-            </div>
+
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="Lname"
+              placeholder="last name"
+              value="{{myauthor.user.last_name}}"
+            />
           </div>
-         
-          
-          <div class="form-group">
-            <label class="col-md-3 control-label">Password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
-            </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="Email"
+              placeholder="Email"
+              value="{{myauthor.user.email}}"
+            />
           </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
-            </div>
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="phone"
+              placeholder="Phone"
+              value="{{myauthor.phone}}"
+            />
           </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-            </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="FbLink"
+              placeholder="FbLink"
+              value="{{myauthor.Fb_link}}"
+            />
           </div>
-        </form>
-      </div>
+          <div class="col-md-6">
+            <input
+              class="form-control"
+              type="text"
+              name="iglink"
+              placeholder="iglink"
+              value="{{myauthor.ig_link}}"
+            />
+          </div>
+        </div>
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes" />
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel" />
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<hr>
+<hr />
 {% endblock content %}

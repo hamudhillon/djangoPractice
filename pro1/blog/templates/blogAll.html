@@ -144,7 +144,7 @@
       <div class="card-profile">
         <img
           class="profile-img"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpYJQKSoM7S75P_KMRtQHqAAIPh133CSxByw&usqp=CAU"
+          src="{% if blog.author.profilePic %}{{blog.author.profilePic.url}}{% endif %}"
           alt=""
         />
         <div class="card-profile-info">
