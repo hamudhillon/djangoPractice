@@ -54,6 +54,12 @@
             <a class="nav-item nav-link" href="{% url "addPost" %}">Add Blog</a>
            
           </div>
+        <div>
+          <form class='d-flex gap-2' action='{% url "blogAll" %}' method='GET'>
+            <input class='form-control' type='text' name='search' placeholder='Search..'>
+            <button class='btn btn-success' type='submit'>Search</search>
+          </form>
+        </div> 
           <!-- Right navigation -->
            {% if request.user.is_authenticated %}
            

@@ -10,10 +10,22 @@ def blogAll(request):
     filters=request.GET
     categoryfilters=''
     if filters:
-        categoryfilters=filters['category'].replace('and','&')
-    print(categoryfilters)
+        try:
+            categoryfilters=filters['category'].replace('and','&')
+            allBlogs=blog.objects.filter(category__name__icontains=categoryfilters)
+        except:
+            allBlogs=blog.objects.filter()
+        try:
+            Searchfilters=filters['search']
+            allBlogs=blog.objects.filter(title__icontains=Searchfilters)
+        except:
+            allBlogs=blog.objects.filter()
+    else:
+        allBlogs=blog.objects.filter()
 
-    allBlogs=blog.objects.filter(category__name__icontains=categoryfilters)
+    
+    # allBlogs=blog.objects.filter(title__icontains=categoryfilters)
+    # allBlogs=blog.objects.filter(tags__name__in=['food','javascript'])
     return render(request,'blogAll.html',context={'blogs':allBlogs,'allcats':allcats})
 
 def blogSingle(request,id,bname):
