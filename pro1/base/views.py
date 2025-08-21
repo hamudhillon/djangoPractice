@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 from .models import *
 # Create your views here.
-
+from .forms import *
 
 
 def home(requests):
@@ -150,3 +150,25 @@ def empCreate(request):
         # empOB.save()
 
     return render(request,'empCreate.html',context={'departments':departments})
+
+
+
+def contact(request):
+    if request.method=='POST':
+        form=ContactForm(request.POST)
+        if form.is_valid():
+            name=form.cleaned_data['name']
+            email=form.cleaned_data['email']
+            message=form.cleaned_data['message']
+            print(name,email,message)
+    forms=ContactForm()
+    return render(request,'contact.html',{'forms':forms})
+
+
+def studentView(request):
+    if request.method=='POST':
+        form=studentForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form=studentForm()
+    return render(request,'students.html',{'forms':form})

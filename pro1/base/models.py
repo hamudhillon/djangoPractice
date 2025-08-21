@@ -13,3 +13,10 @@ class emp(models.Model):
     address=models.TextField()
     # department=models.CharField(max_length=50)
     department=models.ForeignKey(department,on_delete=models.CASCADE)
+
+
+class student(models.Model):
+    name=models.CharField(max_length=100)
+    phone=models.CharField(max_length=100)
+    age=models.CharField(max_length=10)
+    

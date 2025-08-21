@@ -3,6 +3,8 @@ from .views import *
 # APP
 urlpatterns = [
     path('home/',home,name='home'),
+    path('contact/',contact,name='contact'),
+    path('student/',studentView,name='student'),
     path('about/',about,name='about'),
     path('aasdhgashd asjasdasd/<int:num1>/<int:num2>/<str:name>',add,name='add'),
     path('data/',data,name='data'),
