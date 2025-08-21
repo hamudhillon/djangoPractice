@@ -10,3 +10,9 @@ class studentForm(forms.ModelForm):
     class Meta:
         model=student
         fields=['name','phone','age']
+        
+    def clean_age(self):
+        age=self.cleaned_data['age']
+        if int(age)<18:
+            raise forms.ValidationError("age must be 18 or above")
+        return age

@@ -166,9 +166,11 @@ def contact(request):
 
 
 def studentView(request):
+    form=studentForm()
     if request.method=='POST':
         form=studentForm(request.POST)
         if form.is_valid():
             form.save()
-    form=studentForm()
+        else:
+            print(form.errors)
     return render(request,'students.html',{'forms':form})
