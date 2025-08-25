@@ -3,6 +3,9 @@ from .models import *
 # Create your views here.
 from .forms import *
 
+from django.views.generic import ListView
+
+
 
 def home(requests):
     data = {
@@ -98,10 +101,16 @@ def createUsers(request):
     return render(request,'createUsers.html',{'data':data})
 
 
-def empViews(request):
-    data= emp.objects.all()
-    print(data)
-    return render(request,'empData.html',context={'data':data})
+class empViews(ListView):
+    model=emp
+    template_name='empData.html'
+    context_object_name='data'
+
+
+# def empViews(request):
+#     data= emp.objects.all()
+#     print(data)
+#     return render(request,'empData.html',context={'data':data})
 
 def empDelete(request,id):
     empuser=emp.objects.get(id=id)
