@@ -10,8 +10,13 @@ urlpatterns = [
     path('data/',data,name='data'),
     path('user/<str:name>',bio,name='bio'),
     path('createUsers/',createUsers,name='createUser'),
+
     path('empData',empViews.as_view(),name='empData'),
-    path('empCreate',empCreate,name='empCreate'),
+    path('empData/<int:pk>',empDetailViews.as_view(),name='empDetail'),
+    path('empCreate',empCreateView.as_view(),name='empCreate'),
+
+    
+    # path('empCreate',empCreate,name='empCreate'),
     path('empDelete/<int:id>',empDelete,name='empDelete'),
     path('empUpdate/<int:id>',empUpdate,name='empUpdate'),
 ]

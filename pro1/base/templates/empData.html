@@ -14,7 +14,7 @@
     {% for emp in data %}
     <tr>
         <td>{{emp.id}}</td>
-        <td>{{emp.name}}</td>
+        <td><a href="{% url "empDetail" pk=emp.pk %}">{{emp.name}} </a></td>
         <td>{{emp.phone}}</td>
         <td>{{emp.address}}</td>
         <td>{{emp.department}}</td>

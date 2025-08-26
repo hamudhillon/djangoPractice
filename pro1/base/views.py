@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponse,redirect
 from .models import *
 # Create your views here.
 from .forms import *
+from django.urls import reverse_lazy
 
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView,DeleteView,UpdateView,CreateView
 
 
 
@@ -106,6 +107,23 @@ class empViews(ListView):
     template_name='empData.html'
     context_object_name='data'
 
+
+class empDetailViews(DeleteView):
+    model=emp
+    template_name='empDetail.html'
+    context_object_name='data'
+
+
+class empCreateView(CreateView):
+    model=emp
+    template_name='empCreate.html'
+    fields=['name','phone','address','department']
+    # context_object_name='departments'
+    success_url=reverse_lazy('empData')
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['departments']=department.objects.all()
+        return context
 
 # def empViews(request):
 #     data= emp.objects.all()

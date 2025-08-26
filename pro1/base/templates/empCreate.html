@@ -10,7 +10,7 @@
          <select Name='department'>
              <option value=''>Select Department</option>
         {% for department in departments %}
-          <option value='{{department.name}}'>{{department.name}}</option>
+          <option value='{{department.id}}'>{{department.name}}</option>
         {% endfor %}
         </select><br> 
         <textarea name='address' placeholder='address' ></textarea> 
