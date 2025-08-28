@@ -3,13 +3,21 @@ from .models import *
 # Create your views here.
 from .forms import *
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 from django.views.generic import ListView,DetailView,DeleteView,UpdateView,CreateView
 
 
 
+def onlineUsers():
+    five_min=timezone.now() - timedelta(minutes=5)
+    return Profile.objects.filter(last_activity__gte=five_min)
+
 def home(requests):
+    # print('a',user.profile.user)
+    print(onlineUsers())
     data = {
+        'onlineUsers':onlineUsers(),
         'users': [
             {
                 'name': 'Ram',
@@ -120,6 +128,7 @@ class empCreateView(CreateView):
     fields=['name','phone','address','department']
     # context_object_name='departments'
     success_url=reverse_lazy('empData')
+
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context['departments']=department.objects.all()

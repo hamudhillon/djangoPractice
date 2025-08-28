@@ -35,6 +35,7 @@ class empAdmin(admin.ModelAdmin):
 admin.site.register(emp,empAdmin)
 admin.site.register(department)
 admin.site.register(student)
+admin.site.register(Profile)
 
 
 

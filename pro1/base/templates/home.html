@@ -2,7 +2,18 @@
 {% load static %}
 {% block content %}
 
-   
+    <h1>{{user.profile.last_activity}}</h1>
+    {% if user.profile.is_online %}
+        <span style='color:green'>online</span>
+        {% else %}
+        <span style='color:gray'>last seen {{user.profile.last_seen}}</span>
+
+    {% endif %}
+
+    {% for onlineUser in onlineUsers %}
+        <h2>{{onlineUser.user}}</h2>
+    {% endfor %}
+    <br>
     <img src='{% static "media/img.jpg" %}' width='200'> 
 
 

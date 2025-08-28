@@ -6,6 +6,7 @@ from django.contrib.auth import login ,authenticate,logout
 
 # Create your views here.
 def blogAll(request):
+   
     allcats=category.objects.all()
     filters=request.GET
     categoryfilters=''
