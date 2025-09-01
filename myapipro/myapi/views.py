@@ -29,4 +29,11 @@ def student_details(request,id):
 @csrf_exempt
 @require_http_methods(['POST'])
 def student_create(request):
-    print(request)
+    data=json.loads(request.body)
+    Student.objects.create(
+        name=data['name'],
+        age=data['age'],
+        email=data['email']
+    )
+
+    return JsonResponse({'message':'Student Created'})
