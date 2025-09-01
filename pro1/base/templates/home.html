@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
+    
     <h1>{{user.profile.last_activity}}</h1>
     {% if user.profile.is_online %}
         <span style='color:green'>online</span>
