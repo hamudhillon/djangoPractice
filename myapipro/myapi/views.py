@@ -16,6 +16,14 @@ def student_list(request):
     students=list(Student.objects.values())
     return JsonResponse(students,safe=False)
 
+def student_details(request,id):
+    student=Student.objects.get(id=id)
+    return JsonResponse({
+        'id':student.id,
+        'name':student.name,
+        'email':student.email,
+        'age':student.age
+    })
 
 
 @csrf_exempt
