@@ -29,3 +29,41 @@ class StudentListCreate(APIView):
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
             
+
+class StudentDetail(APIView):
+
+    def get_object(self,pk):
+        try:
+            
+            return Student.objects.get(pk=pk) 
+
+        except:
+            return None
+    
+    def get(self,request,pk):
+        student=self.get_object(pk)
+        if not student:
+            return Response({"error":"Student Not found"},status=status.HTTP_404_NOT_FOUND)
+        
+        serializer=StudentSerializer(student)
+        return Response(serializer.data)
+
+    def put(self,request,pk):
+        student=self.get_object(pk)
+        if not student:
+            return Response({"error":"Student Not found"},status=status.HTTP_404_NOT_FOUND)
+
+        serializer=StudentSerializer(student,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,pk):
+        student=self.get_object(pk)
+        if not student:
+            return Response({"error":"Student Not found"},status=status.HTTP_404_NOT_FOUND)
+
+        student.delete()
+        return Response({"message":"Student Deleted successfully"},status=status.HTTP_204_NO_CONTENT)

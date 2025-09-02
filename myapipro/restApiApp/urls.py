@@ -9,4 +9,5 @@ from .views import *
 urlpatterns = [
     # path('',include(router.urls)),
     path('students/',StudentListCreate.as_view(),name="student-list-create"),
+    path('students/<int:pk>',StudentDetail.as_view(),name="student-detail"),
 ]
