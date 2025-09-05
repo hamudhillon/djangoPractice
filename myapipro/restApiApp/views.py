@@ -14,10 +14,36 @@ from rest_framework import status,filters,generics
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import *
 from .serializers import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
+
+
+def get_tokens_for_user(user):
+    refresh=RefreshToken.for_user(user)
+    return {
+        'refresh':str(refresh),
+        'access':str(refresh.access_token)
+    }
+
+
+class LoginView(APIView):
+    def post(self,request):
+        username=request.data.get('username')
+        password=request.data.get('password')
+
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            tokens=get_tokens_for_user(user)
+            return Response({"message":"Login Successful","tokens":tokens},status=status.HTTP_200_OK)
+        else:
+            return Response({"error":"Invalid creds"},status=status.HTTP_404_NOT_FOUND)
 
 
 
-class StudentListCreate(generics.ListCreateAPIView):
+class StudentListCreate(generics.GenericAPIView):
+    permission_classes=[IsAuthenticated]
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
 
@@ -34,27 +60,18 @@ class StudentListCreate(generics.ListCreateAPIView):
 
 # class StudentListCreate(APIView):
 
-#     def get(self,request):
-#         students=Student.objects.all()
-
-#         name=request.query_params.get('name')
-#         age=request.query_params.get('age')
-
-#         if name:
-#             students=students.filter(name__icontains=name)
-#         if age:
-#             students=students.filter(age=age)   
-
-#         serializers=StudentSerializer(students,many=True)
-#         return Response(serializers.data)
+    def get(self,request):
+        queryset=self.filter_queryset(self.get_queryset())
+        serializers=StudentSerializer(queryset,many=True)
+        return Response(serializers.data)
     
-#     def post(self,request):
-#         serializer=StudentSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data,status=status.HTTP_201_CREATED)
-#         else:
-#             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    def post(self,request):
+        serializer=StudentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
             
 
 class StudentDetail(APIView):
