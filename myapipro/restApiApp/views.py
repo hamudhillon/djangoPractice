@@ -40,10 +40,25 @@ class LoginView(APIView):
         else:
             return Response({"error":"Invalid creds"},status=status.HTTP_404_NOT_FOUND)
 
+class SignupView(APIView):
+    def post(self,request):
+        username=request.data.get('username')
+        email=request.data.get('email')
+        password=request.data.get('password')
+
+        if User.objects.filter(username=username).exists():
+            return Response({"error":"Username Already Exists"},status=status.HTTP_400_BAD_REQUEST)
+
+        user=User.objects.create_user(username=username,email=email,password=password)
+        user.save()
+        tokens=get_tokens_for_user(user)
+        return Response({"message":"User created","tokens":tokens},status=status.HTTP_201_CREATED)
+
 
 
 class StudentListCreate(generics.GenericAPIView):
     permission_classes=[IsAuthenticated]
+
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
 

@@ -1,6 +1,8 @@
 
 from django.urls import path,include
 from .views import *
+from rest_framework_simplejwt.views import TokenRefreshView,TokenVerifyView
+
 # from rest_framework.routers import DefaultRouter
 
 # router=DefaultRouter()
@@ -11,4 +13,9 @@ urlpatterns = [
     path('students/',StudentListCreate.as_view(),name="student-list-create"),
     path('students/<int:pk>',StudentDetail.as_view(),name="student-detail"),
     path('login/',LoginView.as_view(),name="login"),
+    path('signup/',SignupView.as_view(),name="signup"),
+
+    path('token/refresh/',TokenRefreshView.as_view(),name="token_refresh"),
+    path('token/verify/',TokenVerifyView.as_view(),name="token_verify"),
+
 ]
