@@ -10,24 +10,51 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,filters,generics
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import *
 from .serializers import *
 
-class StudentListCreate(APIView):
 
-    def get(self,request):
-        students=Student.objects.all()
-        serializers=StudentSerializer(students,many=True)
-        return Response(serializers.data)
+
+class StudentListCreate(generics.ListCreateAPIView):
+    queryset=Student.objects.all()
+    serializer_class=StudentSerializer
+
+
+    filter_backends=[DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter]
+    filterset_fields={
+        'age':['exact','gte','lte'],
+        'name':['exact','icontains'],
+        'phone':['exact']
+    }
+    search_fields=['age','name','phone','email']
+    ordering_fields=['age','name']
     
-    def post(self,request):
-        serializer=StudentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data,status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+# class StudentListCreate(APIView):
+
+#     def get(self,request):
+#         students=Student.objects.all()
+
+#         name=request.query_params.get('name')
+#         age=request.query_params.get('age')
+
+#         if name:
+#             students=students.filter(name__icontains=name)
+#         if age:
+#             students=students.filter(age=age)   
+
+#         serializers=StudentSerializer(students,many=True)
+#         return Response(serializers.data)
+    
+#     def post(self,request):
+#         serializer=StudentSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data,status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
             
 
 class StudentDetail(APIView):
